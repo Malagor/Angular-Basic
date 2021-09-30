@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="card myCard">
+    <div class="card-body">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Название"
+               [(ngModel)]="todoTitle"
+               (keydown.enter)="addTodo()"
+               #titleInputRef
+        >
+        <label for="floatingInput">Название</label>
+      </div>
+      <button type="button" class="btn btn-outline-dark myBtn" (click)="addTodo()">Добавить</button>
+      <button type="button" class="btn btn-outline-dark myBtn" (click)="fetchTodos()">Загрузить</button>
+    </div>
+  </div>
+
+  <div style="position: relative">
+    <div *ngIf="!loading; else loader">
+
+      <div *ngIf="todos.length; else noTodos">
+        <div class="card myCard" *ngFor="let todo of todos">
+          <div class="card-body">
+            <div class="card-wrapper">
+              <div [class.completed]="todo.completed">{{ todo.title | titlecase }}</div>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-secondary myBtn done"
+                        [class.completed]="todo.completed">
+                  <fa-icon [icon]="checkIcon"></fa-icon>
+                </button>
+                <button type="button" class="btn btn-outline-danger myBtn delete" (click)="removeTodo(todo.id!)">
+                  <fa-icon [icon]="delIcon"></fa-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noTodos>
+        <p>Нет текущих задач</p>
+      </ng-template>
+
+    </div>
+    <ng-template #loader>
+      <div class="spinner-border text-primary spinner" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </ng-template>
+  </div>
+</div>

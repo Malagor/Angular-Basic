@@ -1,0 +1,7 @@
+<div class="card" appStyles [dStyles]="{color:'blue', fontWeight:'bold'}" >
+  <div class="card-body">
+    <h3 class="card-title">{{post.title}}</h3>
+    <p class="card-text">{{post.body}}</p>
+    <button type="button" class="btn btn-secondary" (click)="delete()">Удалить</button>
+  </div>
+</div>

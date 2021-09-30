@@ -1,0 +1,26 @@
+<input type="text"
+       class="form-control mb-3"
+       placeholder="Поиск..."
+       [(ngModel)]="query"
+       (ngModelChange)="sendData()">
+<button
+  type="button"
+  class="btn btn-outline-primary m-1"
+  (click)="setField('no_filter')"
+  >
+  No filter
+</button>
+<button
+  type="button"
+  class="btn btn-outline-secondary m-1"
+  (click)="setField('title')"
+  >
+  Title
+</button>
+<button
+  type="button"
+  class="btn btn-outline-success m-1"
+  (click)="setField('body')"
+  >
+  Body
+</button>

@@ -1,0 +1,10 @@
+<button
+  type="button"
+  class="btn mb-3"
+  [class.btn-success]="!show"
+  [class.btn-danger]="show"
+  (click)="show = !show"
+>{{show ? 'Hide' : 'Show'}}</button>
+<div class="wrap" *appShow="show">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam delectus dolore enim excepturi itaque laborum maiores nemo nulla quisquam.</p>
+</div>

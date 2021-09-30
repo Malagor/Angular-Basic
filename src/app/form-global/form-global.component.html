@@ -1,0 +1,86 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Angular Forms</h1>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="mb-3 row">
+          <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail" formControlName="email">
+            <div class="validator" *ngIf="form.get('email')?.invalid && form.get('email')!.touched">
+              <small *ngFor="let val of validator['email']">
+                <ng-container *ngIf="form.get('email')?.errors?.[val.key]">
+                  {{val.message}}
+                </ng-container>
+              </small>
+
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword" formControlName="password">
+            <div class="validator" *ngIf="form.get('password')!.invalid && form.get('password')!.touched">
+              <small *ngIf="form.get('password')?.errors?.minlength">
+                Поле Password должно быть ну менее {{ form.get('password')?.errors?.minlength.requiredLength }}
+                символов.
+                Вы ввели {{ form.get('password')?.errors?.minlength.actualLength }}.
+              </small>
+              <small *ngIf="form.get('password')?.errors?.required">
+                Пароль не может быть пустым.
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3" formGroupName="address">
+      <div class="card-body">
+        <h2 class="card-title">Адрес</h2>
+
+        <div class="mb-3">
+          <select class="form-select" aria-label="Default select example" formControlName="country">
+            <option selected disabled>Страна</option>
+            <option value="ru">Россия</option>
+            <option value="ua">Украина</option>
+            <option value="by">Беларусь</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control mb-3" placeholder="Город" formControlName="city">
+          <button type="button" class="btn btn-primary" (click)="setCapital()">Выбрать столицу</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3" formGroupName="skills">
+      <div class="card-body">
+        <h2 class="card-title">Ваши навыки</h2>
+        <button type="button" class="btn btn-primary" (click)="addSkill()">Добавить умение</button>
+        <div *ngFor="let control of getControls(); let idx = index">
+          <label class="row">Навык {{idx + 1}}</label>
+          <div class="input-group">
+            <input type="text" class="form-control" [formControlName]="idx">
+
+            <button type="button" class="btn btn-outline-danger" (click)="deleteSkill(idx)">
+              <fa-icon [icon]="delIcon"></fa-icon>
+            </button>
+          </div>
+          <div class="validator"
+               *ngIf="form.get('skills')?.get(idx.toString(10))!.invalid && form.get('skills')?.get(idx.toString(10))!.touched">
+            <small *ngIf="form.get('skills')?.get(idx.toString(10))?.errors?.required">
+              Поле не может быть пустым.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="form.invalid || form.pending">Отправить</button>
+
+  </form>
+</div>

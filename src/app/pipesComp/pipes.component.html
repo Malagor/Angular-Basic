@@ -1,0 +1,26 @@
+<div class="wrapper shadow">
+  <h4>Pipes</h4>
+  <p class="bold">STRING uppercase | titlecase | lowercase</p>
+  <p class="bold">{{ str }}</p>
+  <p>uppercase: {{ str | uppercase }}</p>
+  <p>titlecase: {{ str | titlecase }}</p>
+  <p>lowercase: {{ str | lowercase }}</p>
+
+  <p class="bold">NUMBER </p>
+  <p class="bold">{{ num }}</p>
+  <p>'1.3-5': {{ num | number:'1.3-5' }}</p>
+  <p>{{ num | number }}</p>
+  <p>2 ** 5 = {{ 2 | multyBy:5 }}</p>
+
+  <p class="bold">DATE </p>
+  <p class="bold">{{ date }}</p>
+  <p>'short': {{ date | date:'short' }}</p>
+  <p>{{ date | date:'dd MMMM YYYY, HH:mm:ss': '-0300': 'ru' }}</p>
+  <p>{{ date | localDate }}</p>
+
+  <p class="bold">JSON </p>
+  <p class="bold">{{ obj }}</p>
+  <p>p: {{ obj | json }}</p>
+  <code>code: {{ obj | json }}</code>
+  <pre>pre: {{ obj | json }}</pre>
+</div>

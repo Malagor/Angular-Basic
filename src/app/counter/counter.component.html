@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="card col-6">
+    <div class="card-body">
+      <h5 class="card-title">Counter Global: {{ appCounterServices.counter }}</h5>
+      <button type="button" class="btn btn-outline-primary" (click)="appCounterServices.increase()">increase</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="appCounterServices.decrease()">decrease</button>
+    </div>
+  </div>
+
+  <div class="card col-6">
+    <div class="card-body">
+      <h5 class="card-title">Counter Local: {{ localCounterServices.counter }}</h5>
+      <button type="button" class="btn btn-outline-primary" (click)="localCounterServices.increase()">increase</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="localCounterServices.decrease()">decrease
+      </button>
+    </div>
+  </div>
+</div>

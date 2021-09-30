@@ -1,0 +1,28 @@
+<form class="mb-3">
+  <input
+    type="text"
+    class="form-control mb-3"
+    placeholder="Заголовок"
+    [(ngModel)]="title"
+    (ngModelChange)="changeInputs()"
+    name="title"
+    #titleInputRef
+  >
+  <input
+    type="text"
+    class="form-control mb-3"
+    placeholder="Описание"
+    [(ngModel)]="body"
+    (ngModelChange)="changeInputs()"
+    name="body">
+  <p
+    style="color: red"
+    *ngIf="message"
+  >{{message}}</p>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    (click)="submit()"
+  >Добавить
+  </button>
+</form>
